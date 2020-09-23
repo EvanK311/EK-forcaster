@@ -1,0 +1,15 @@
+.container {
+    background-color: olivedrab;
+}
+
+.row {
+    background: orchid;
+}
+
+header {
+    text-align: center;
+    background-color: gray;
+    height: 50px;
+    font-size: 30px;
+    
+}
