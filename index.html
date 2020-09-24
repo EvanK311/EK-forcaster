@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Weather Dash</title>
 </head>
 
@@ -15,8 +16,8 @@
     <header>Weather Dashboard</header>
 
     <div class=container>
-        <div class=row>
-            <div class=col-md-3>
+        <div class="row">
+            <div id=searchCol class=col-md-3>
                 <form id="city-entry">
                     <label for="city-entry">search for a city</label>
                     <input type="text" id="city-input"><br>
@@ -25,23 +26,25 @@
                     <input id="find-city" type="submit" value="city-search">
                 </form>
             </div>
-            <div class = col>
+            <div id=resultCol class=col-md-9>
                 <div id=currentDate></div>
                 <div id=cityName></div>
                 <div id=cityTemp></div>
                 <div id=cityHumid></div>
                 <div id=cityWind></div>
-                <div id=cityUV>
+                <div id=cityUV></div>
+                <!-- 5 day forcast area -->
+
             </div>
-            <div class="row">
-                <div class = col-md-8>
-                    <!-- 5 day forcast area -->
-                    <div id=currentDate></div>
-                <div id=cityName></div>
-                <div id=cityTemp5></div>
-                <div id=cityHumid5></div>
-                <div id=cityWind5></div>
-                <div id=cityUV5></div>
+        </div>
+        <div id=row5day class="row">
+            <div class=col-md-2>
+                
+                
+                <div id=cityTemp1></div>
+                <div id=cityHumid1></div>
+                <div id=cityWind5></div>
+                <div id=cityUV5></div>
             </div>
         </div>
     </div>

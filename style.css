@@ -1,9 +1,12 @@
 .container {
     background-color: olivedrab;
+    
 }
 
 .row {
     background: orchid;
+    border-style: double;
+    border-color: black;
 }
 
 header {
@@ -12,4 +15,17 @@ header {
     height: 50px;
     font-size: 30px;
     
+}
+
+#searchCol {
+    border-style: double;
+}
+
+#resultCol {
+    border-style: double;
+}
+
+#row5day {
+    border-style: double;
+    height: 50vh;
 }
