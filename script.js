@@ -4,7 +4,8 @@
 // empty vars for latitude and longitude
 var cityLat
 var cityLon
-
+var citySelect = []  
+var localStore = window.localStorage
 console.log("never give up, yo")
 $("#currentDate").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
@@ -14,8 +15,13 @@ $("#find-city").on("click", function (search) {
     search.preventDefault()
 
     var city = $("#city-input").val()
-    console.log(city)
+    citySelect.push(city)
+    localStore.setItem('citySave', JSON.stringify(citySelect))
+    var cityRescue = JSON.parse(localStore.getItem('citySave'))
+    
 
+    
+    
     // ajax call to get current weather of city
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&cnt=5&appid=941384f3ad9319cea1d15e58a1f228c4",
@@ -43,18 +49,31 @@ $("#find-city").on("click", function (search) {
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=f5f7477c35e4d4619d2d7dc9decedbd0`,
             method: "GET"
+        
         }).then(function (response) {
             console.log(response)
             var cityUV = response.daily[0].uvi
             $("#cityUV").text("UV Index: " + cityUV)
-            $("#cityTemp1").text("Temperature: " + cityTemp + " F")
-
+            for (i = 1; i < 6; i++) {
+                // var day5col = $("<div class = 'col-md-2'>")
+                var temp1 = response.daily[i].temp.max.toFixed(0)
+                var date1 = response.daily[i].dt 
+                var humid1 = response.daily[i].humidity
+                date1 = (moment().add(i, "d"))
+                colDaily(i).append(date1)
+                colDaily(i).append("Temp: " + temp1 + " F")
+                colDaily(i).append("Humidity: " + humid1)
+                
+               console.log(temp1)
+            }
+               
         })
     })
-
-
-
-
+    for (var index = 0; index < cityRescue.length; index++){
+        var newList = $("<ul>")
+        newList.text(cityRescue[index])
+        $(".cityList").append(newList)
+    }
 })
 
 
