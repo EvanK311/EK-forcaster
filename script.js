@@ -13,12 +13,11 @@ $("#currentDate").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 // on click button to retrieve info
 $("#find-city").on("click", function (search) {
     search.preventDefault()
-
     var city = $("#city-input").val()
     citySelect.push(city)
     localStore.setItem('citySave', JSON.stringify(citySelect))
     var cityRescue = JSON.parse(localStore.getItem('citySave'))
-    
+    $("#cityList").empty()
 
     
     
@@ -55,24 +54,30 @@ $("#find-city").on("click", function (search) {
             var cityUV = response.daily[0].uvi
             $("#cityUV").text("UV Index: " + cityUV)
             for (i = 1; i < 6; i++) {
+                $("#date"+i).empty()
+                $("#temperature"+i).empty()
+                $("#humidity"+i).empty()
                 // var day5col = $("<div class = 'col-md-2'>")
                 var temp1 = response.daily[i].temp.max.toFixed(0)
                 var date1 = response.daily[i].dt 
                 var humid1 = response.daily[i].humidity
                 date1 = (moment().add(i, "d"))
-                colDaily(i).append(date1)
-                colDaily(i).append("Temp: " + temp1 + " F")
-                colDaily(i).append("Humidity: " + humid1)
-                
-               console.log(temp1)
+                $("#date" + i).text(date1)
+                $("#temperature"+ i).append("Temp: " + temp1 + " F")
+                $("#humidity"+ i).append("Humidity: " + humid1)
+                console.log(date1)
+                console.log(temp1)
+                console.log(humid1)
             }
                
         })
     })
     for (var index = 0; index < cityRescue.length; index++){
-        var newList = $("<ul>")
+       
+        var newList = $("<ul>")        
         newList.text(cityRescue[index])
-        $(".cityList").append(newList)
+        $("#cityList").append(newList)
+        
     }
 })
 

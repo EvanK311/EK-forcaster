@@ -1,6 +1,7 @@
 .container {
     background-color: olivedrab;
-    
+    width: 100vw;
+    margin: 0;
 }
 
 .row {
@@ -18,14 +19,22 @@ header {
 }
 
 #searchCol {
+    margin: auto;
     border-style: double;
 }
 
 #resultCol {
     border-style: double;
+    
 }
 
 #row5day {
     border-style: double;
-    height: 50vh;
+    height: 75vh;
+    width: 100vw;
+    
+}
+
+.daily {
+    text-align: left
 }
