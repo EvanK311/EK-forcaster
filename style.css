@@ -1,11 +1,16 @@
+body {
+    background-color:  rgb(27, 31, 21);
+}
+
 .container {
-    background-color: olivedrab;
+    background-color: rgb(27, 31, 21);
     width: 100vw;
     margin: 0;
+    color: burlywood
 }
 
 .row {
-    background: orchid;
+    background: rgb(36, 8, 35);
     border-style: double;
     border-color: black;
 }
@@ -37,4 +42,8 @@ header {
 
 .daily {
     text-align: left
+}
+
+h3 {
+    border-style: double
 }

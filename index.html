@@ -26,7 +26,7 @@
                     <input id="find-city" type="submit" value="city-search">
                 </form>
             </div>
-            <div id=resultCol class=col-md-9>
+            <div id=resultCol class=col-md-6>
                 <div id=currentDate></div>
                 <div id=cityName></div>
                 <div id=cityTemp></div>
@@ -36,10 +36,16 @@
                 <!-- 5 day forcast area -->
 
             </div>
+            <col-md-3></col-md-3>
         </div>
+        <row>
+            <h2>5-Day Forcast</h2>
+        </row>
         <div id=row5day class="row">
-            <H2>5-Day Forcast</H2>
-            <div id = cityList class = "col-md-2 daily"></div>
+            <div class = "col-md-2 daily">
+                <h3>Previously Viewed</h3>
+                <div id = cityList></div>
+            </div>
             <div id=colDaily1 class="col-md-2 daily">
                 <div id=date1></div>
                 <div id=temperature1></div>
