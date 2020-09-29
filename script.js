@@ -7,7 +7,7 @@ var cityLon
 var citySelect = []
 var localStore = window.localStorage
 var newButton = $("<button>")
-
+var cityRescue = JSON.parse(localStore.getItem('citySave'))
 console.log("never give up, yo")
 $("#currentDate").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
@@ -46,7 +46,7 @@ $("#find-city").on("click", function (search) {
 
         $("currentDate").text(curDate)
 
-        console.log(response)
+        console.log(response.weather[0].icon)
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=f5f7477c35e4d4619d2d7dc9decedbd0`,
             method: "GET"
@@ -95,7 +95,7 @@ function prevApi(city) {
         url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&cnt=5&appid=941384f3ad9319cea1d15e58a1f228c4",
         method: "GET"
     }).then(function (response) {
-        $("#cityList").empty()
+       
         cityName = response.name
         cityTemp = ((response.main.temp) * 1.8 - 459.67).toFixed(0)
         cityWind = ((response.wind.speed) * .6214).toFixed(1)

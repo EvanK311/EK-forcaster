@@ -47,3 +47,9 @@ header {
 h3 {
     border-style: double
 }
+
+.dateLook {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 18px;
+}
