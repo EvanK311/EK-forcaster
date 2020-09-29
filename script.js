@@ -4,6 +4,7 @@
 // empty vars for latitude and longitude
 var cityLat
 var cityLon
+var forcastPic
 var citySelect = []
 var localStore = window.localStorage
 var newButton = $("<button>")
@@ -35,7 +36,9 @@ $("#find-city").on("click", function (search) {
         cityLat = response.coord.lat
         cityLon = response.coord.lon
         curDate = response.dt
-
+        forcastPic = response.weather[0].icon
+        curStatus = response.weather[0].description
+        console.log(forcastPic)
 
         allDaWeather = [response.name, response.main.humidity, response.main.temp, response.wind.speed, response.weather[0].icon]
 
@@ -43,10 +46,12 @@ $("#find-city").on("click", function (search) {
         $("#cityTemp").text("Temperature: " + cityTemp + " F")
         $("#cityWind").text("Wind speed: " + cityWind + "mph")
         $("#cityHumid").text("Humidity: " + cityHumid + "%")
+        $("#forcastPic").attr('src', "http://openweathermap.org/img/wn/" + forcastPic + "@2x.png")
+        $("#curStatus").text(curStatus)
 
         $("currentDate").text(curDate)
 
-        console.log(response.weather[0].icon)
+        console.log(response)
         $.ajax({
             url: `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=f5f7477c35e4d4619d2d7dc9decedbd0`,
             method: "GET"
@@ -63,10 +68,15 @@ $("#find-city").on("click", function (search) {
                 var temp1 = response.daily[i].temp.max.toFixed(0)
                 var date1 = response.daily[i].dt
                 var humid1 = response.daily[i].humidity
+                var forPic5 = response.daily[i].weather[0].icon
+                var curStatus5 = response.daily[i].weather[0].description
                 date1 = (moment().add(i, "d"))
                 $("#date" + i).text(date1)
                 $("#temperature" + i).append("Temp: " + temp1 + " F")
                 $("#humidity" + i).append("Humidity: " + humid1)
+                $("#curStatus" + i).text(curStatus5)
+                $("#forcastPic" + i).attr('src', "http://openweathermap.org/img/wn/" + forPic5 + "@2x.png")
+                
                 console.log(date1)
                 console.log(temp1)
                 console.log(humid1)
