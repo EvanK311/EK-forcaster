@@ -21,6 +21,12 @@ $("#find-city").on("click", function (search) {
     localStore.setItem('citySave', JSON.stringify(citySelect))
     var cityRescue = JSON.parse(localStore.getItem('citySave'))
     $("#cityList").empty()
+    $("#forcastPic").removeClass("hide")
+    $("#forcastPic1").removeClass("hide")
+    $("#forcastPic2").removeClass("hide")
+    $("#forcastPic3").removeClass("hide")
+    $("#forcastPic4").removeClass("hide")
+    $("#forcastPic5").removeClass("hide")
 
 
 
@@ -76,7 +82,7 @@ $("#find-city").on("click", function (search) {
                 $("#humidity" + i).append("Humidity: " + humid1)
                 $("#curStatus" + i).text(curStatus5)
                 $("#forcastPic" + i).attr('src', "http://openweathermap.org/img/wn/" + forPic5 + "@2x.png")
-                
+
                 console.log(date1)
                 console.log(temp1)
                 console.log(humid1)
@@ -87,14 +93,14 @@ $("#find-city").on("click", function (search) {
     // Loop to dynamically create recall city buttons
     for (var index = 0; index < cityRescue.length; index++) {
         var newButton = $("<button>")
-        $(newButton).addClass("button")             
+        $(newButton).addClass("button")
         newButton.text(cityRescue[index])
         newButton.attr(city)
         $("#cityList").append(newButton)
 
     }
 
-    
+
 })
 
 
@@ -105,7 +111,7 @@ function prevApi(city) {
         url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&cnt=5&appid=941384f3ad9319cea1d15e58a1f228c4",
         method: "GET"
     }).then(function (response) {
-       
+
         cityName = response.name
         cityTemp = ((response.main.temp) * 1.8 - 459.67).toFixed(0)
         cityWind = ((response.wind.speed) * .6214).toFixed(1)
@@ -132,8 +138,10 @@ function prevApi(city) {
         }).then(function (response) {
             console.log(response)
             var cityUV = response.daily[0].uvi
+
             $("#cityUV").text("UV Index: " + cityUV)
             for (i = 1; i < 6; i++) {
+
                 $("#date" + i).empty()
                 $("#temperature" + i).empty()
                 $("#humidity" + i).empty()
@@ -145,6 +153,7 @@ function prevApi(city) {
                 $("#date" + i).text(date1)
                 $("#temperature" + i).append("Temp: " + temp1 + " F")
                 $("#humidity" + i).append("Humidity: " + humid1)
+
                 console.log(date1)
                 console.log(temp1)
                 console.log(humid1)
@@ -152,13 +161,13 @@ function prevApi(city) {
 
         })
     })
-   
+
 }
 
 // click function to trigger secondary API from recall
 $("#cityList").on("click", previousCity);
 
-function previousCity(event) {    
+function previousCity(event) {
     event.preventDefault()
     var city = event.target.textContent
     console.log(event.target)
